@@ -86,7 +86,8 @@ class KNearestNeighbor(object):
         dists = np.zeros((num_test, num_train))
         for i in range(num_test):
             for j in range(num_train):
-                dists[i][j] = np.linalg.norm(X[i] - self.X_train[j], ord=1)
+                dists[i][j] = np.linalg.norm(X[i] - self.X_train[j])
+                # dists[i][j] = np.linalg.norm(X[i] - self.X_train[j], ord=1)
         return dists
 
     def compute_distances_one_loop(self, X):
@@ -100,7 +101,8 @@ class KNearestNeighbor(object):
         num_train = self.X_train.shape[0]
         dists = np.zeros((num_test, num_train))
         for i in range(num_test):
-            dists[i] = np.linalg.norm(self.X_train - X[i], axis=1, ord=1).T
+            dists[i] = np.linalg.norm(self.X_train - X[i], axis=1).T
+            # dists[i] = np.linalg.norm(self.X_train - X[i], axis=1, ord=1).T
         return dists
 
     def compute_distances_no_loops(self, X):
